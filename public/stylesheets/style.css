@@ -1,0 +1,43 @@
+body{
+    background-color: brown;
+    transition: background-color .7s ease-in-out;
+    -moz-transition: background-color .7s ease-in-out;
+    -webkit-transition: background-color .7s ease-in-out; 
+   -o-transition: background-color .7s ease-in-out; 
+   -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.counter{
+    background-color: white;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    cursor: crosshair;
+
+
+}
+
+.count{
+    padding-top : 80px;
+}
+
+.player-name{
+    color:red;
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+
+}
+
+.container{
+    margin-top:100px !important;
+}
+
+.modal-title {
+    margin: 0 auto;
+}
+
+[v-cloak] > * { display:none }
+[v-cloak]::before { content: "loading…" }
