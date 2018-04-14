@@ -1,30 +1,5 @@
 
 
-
-$('#createRoom').on('click', () => {
-  $('.create').show();
-  $('.join').hide();
-
-} );
-
-
-
-$('#config').on('click', () => {
-  $('.configs').toggle('slow');
-} );
-
-
-
-
-
-$('#joinRoom').on('click', () => {
-
-  $('.create').hide();
-  $('.join').show();
-
-} );
-
-
 $(window).on('load',function(){
   $('#exampleModalCenter').addClass('animated fadeOut');
   $('#exampleModalCenter').modal('show');
@@ -35,6 +10,36 @@ $(window).on('load',function(){
 });
 
 $(() => {
+
+
+    let game = true;
+
+
+    $('#createRoom').on('click', () => {
+        $('.create').show();
+        $('.join').hide();
+
+    } );
+
+
+
+    $('#config').on('click', () => {
+        $('.configs').toggle('slow');
+    } );
+
+
+
+
+
+    $('#joinRoom').on('click', () => {
+
+        $('.create').hide();
+        $('.join').show();
+
+    } );
+
+
+
     const socket = io.connect('http://localhost:3000', {
         reconnectionAttempts: 4,
         reconnectionDelay: 3000,
@@ -59,6 +64,7 @@ $(() => {
         let roomname = $('#roomnamec').val();
         let range = $('.rangeConfig').val();
         let speed = $('.speedConfig').val();
+        $('.nameOfRoom').html(roomname);
 
         if(!speed){
             speed = 1;
@@ -81,6 +87,7 @@ $(() => {
 
     $('.joinRoom').on('click', ()=> {
         let roomname = $('#roomname').val();
+        $('.nameOfRoom').html(roomname);
         socket.emit('joinRoom',{roomname});
 
         socket.on('roomExist', (data) => {
@@ -88,9 +95,29 @@ $(() => {
             location.reload();
         } );
 
-        socket.on('roomdata',(data) => {
-            console.log(data.roomdata);
-        });
+    });
+
+
+    $('.counter1').on('click', () => {
+
+        if(game){
+            let count = parseInt($('.count1').text());
+            count++;
+            socket.emit('count', {count});
+            if(count >= 10){
+                $('.count1').html("You win");
+                game = false;
+                alert('You win.')
+            }else{
+                $('.count1').html(count);
+            }
+        }
+    } );
+
+    socket.on('count2',(data) => {
+        $('.count2').html(data.count2);
+
+
     });
 
 

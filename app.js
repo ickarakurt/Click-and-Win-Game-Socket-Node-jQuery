@@ -30,6 +30,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('joinRoom', (data)=>{
+        let room = data.roomname;
         let isExistRoom = io.sockets.adapter.rooms[data.roomname];
         if(!isExistRoom){
             socket.emit('roomExist',{status : "Room can't find"});
@@ -38,11 +39,13 @@ io.on('connection', function (socket) {
         }else{
             socket.join(data.roomname);
             socket.emit('roomdata',{roomdata : io.sockets.adapter.rooms[data.roomname]});
-            socket.on('count',(data)=>{
-                console.log(data.count);
-            });
 
         }
+    });
+
+    socket.on('count',(data)=>{
+        let room = Object.keys(socket.rooms)[0];
+        socket.to(room).emit('count2',{count2 : data.count});
     });
 
 });
