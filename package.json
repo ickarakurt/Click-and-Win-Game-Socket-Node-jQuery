@@ -1,16 +1,26 @@
 {
   "name": "clickandwin",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ickarakurt/Click-and-Win-Game-Nodejs---Vue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ickarakurt/Click-and-Win-Game-Nodejs---Vue/issues"
+  },
+  "homepage": "https://github.com/ickarakurt/Click-and-Win-Game-Nodejs---Vue#readme",
   "dependencies": {
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.0"
+    "express": "^4.16.3",
+    "pug": "^2.0.3",
+    "socket.io": "^2.1.0"
   }
 }
