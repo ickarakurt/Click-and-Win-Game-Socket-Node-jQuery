@@ -40,7 +40,7 @@ $(() => {
 
 
 
-    const socket = io.connect('https://click-and-win.herokuapp.com:8080', {
+    const socket = io.connect('https://159.65.87.2:80', {
         reconnectionAttempts: 4,
         reconnectionDelay: 3000,
         // reconnection: false
@@ -105,7 +105,7 @@ $(() => {
             let room =  $('.nameOfRoom').text();
             count++;
             socket.emit('count', {count});
-            if(count >= 10){
+            if(count >= 30){
                 $('.count1').html("You win");
                 game = false;
                 alert('You win.');
