@@ -102,12 +102,14 @@ $(() => {
 
         if(game){
             let count = parseInt($('.count1').text());
+            let room =  $('.nameOfRoom').text();
             count++;
             socket.emit('count', {count});
             if(count >= 10){
                 $('.count1').html("You win");
                 game = false;
-                alert('You win.')
+                alert('You win.');
+                socket.emit('lose');
             }else{
                 $('.count1').html(count);
             }
@@ -120,6 +122,8 @@ $(() => {
 
     });
 
-
+    socket.on('loser',()=>{
+        alert('Loserrrrrrr - Game Over');
+    });
 
 });

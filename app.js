@@ -48,4 +48,9 @@ io.on('connection', function (socket) {
         socket.to(room).emit('count2',{count2 : data.count});
     });
 
+    socket.on('lose', ()=> {
+        let room = Object.keys(socket.rooms)[0];
+        socket.to(room).emit('loser');
+    });
+
 });
