@@ -40,7 +40,7 @@ $(() => {
 
 
 
-    const socket = io.connect('https://159.65.87.2:80', {
+    const socket = io.connect('localhost:3000', {
         reconnectionAttempts: 4,
         reconnectionDelay: 3000,
         // reconnection: false
@@ -56,6 +56,17 @@ $(() => {
     socket.on('reconnect', () => {
         console.log('Connected.');
     });
+
+    socket.on('loser',()=>{
+        $('.count1').html("You lose");
+    });
+
+    socket.on('count2',(data) => {
+        $('.count2').html(data.count2);
+
+
+    });
+
 
 
 
@@ -91,7 +102,7 @@ $(() => {
         socket.emit('joinRoom',{roomname});
 
         socket.on('roomExist', (data) => {
-            alert(data.status);
+            window.alert(data.status);
             location.reload();
         } );
 
@@ -100,30 +111,20 @@ $(() => {
 
     $('.counter1').on('click', () => {
 
-        if(game){
-            let count = parseInt($('.count1').text());
+        let count = parseInt($('.count1').text());
+        if(game && !isNaN(count)){
             let room =  $('.nameOfRoom').text();
             count++;
             socket.emit('count', {count});
             if(count >= 30){
+                socket.emit('lose');
                 $('.count1').html("You win");
                 game = false;
-                alert('You win.');
-                socket.emit('lose');
             }else{
                 $('.count1').html(count);
             }
         }
     } );
 
-    socket.on('count2',(data) => {
-        $('.count2').html(data.count2);
-
-
-    });
-
-    socket.on('loser',()=>{
-        alert('Loserrrrrrr - Game Over');
-    });
 
 });
