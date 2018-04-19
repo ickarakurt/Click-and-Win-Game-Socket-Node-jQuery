@@ -41,3 +41,10 @@ body{
 
 [v-cloak] > * { display:none }
 [v-cloak]::before { content: "loading…" }
+
+body.modal-open > :not(.modal) {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+}

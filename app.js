@@ -23,8 +23,10 @@ io.on('connection', function (socket) {
             socket.emit('roomExist',{status : "Room already exist. Use different name."});
         }else{
             socket.join(data.roomname);
-            socket.emit('roomdata',{roomdata : io.sockets.adapter.rooms[data.roomname]});
-
+            let newdata = {range : data.range , speed : data.range};
+            Object.assign(socket, newdata);
+            io.to(data.roomname).emit('roomdata',{roomdata : io.sockets.adapter.rooms[data.roomname], userCount : io.sockets.adapter.rooms[data.roomname].length , range : data.range , speed : data.speed});
+            console.log(socket);
         }
 
     });
@@ -32,8 +34,6 @@ io.on('connection', function (socket) {
     socket.on('joinRoom', (data)=>{
         let room = data.roomname;
         let isExistRoom = io.sockets.adapter.rooms[data.roomname];
-        console.log(room);
-        console.log(io.sockets.adapter.rooms[data.roomname]);
 
         if(!isExistRoom){
             socket.emit('roomExist',{status : "Room can't find"});
@@ -41,13 +41,15 @@ io.on('connection', function (socket) {
             socket.emit('roomExist',{status : "Room is full"});
         }else{
             socket.join(data.roomname);
-            socket.emit('roomdata',{roomdata : io.sockets.adapter.rooms[data.roomname]});
-
+            io.to(data.roomname).emit('roomdata',{roomdata : io.sockets.adapter.rooms[data.roomname], userCount : io.sockets.adapter.rooms[data.roomname].length, range : data.range , speed : data.speed});
+            console.log(socket);
         }
     });
 
+
+
     socket.on('count',(data)=>{
-        let room = Object.keys(socket.rooms)[0];
+        const room = Object.keys(socket.rooms)[0];
         socket.in(room).emit('count2',{count2 : data.count});
     });
 
@@ -56,4 +58,14 @@ io.on('connection', function (socket) {
         socket.in(room).emit('loser');
     });
 
+
+
+    socket.on('disconnect',()=>{
+        socket.broadcast.emit('leaved');
+    });
+
+
 });
+
+
+

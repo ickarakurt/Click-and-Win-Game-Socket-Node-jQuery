@@ -64,25 +64,26 @@ $(() => {
     socket.on('count2',(data) => {
         $('.count2').html(data.count2);
 
-
     });
 
 
 
-
     $('#createNewRoom').on('click', () => {
-
         let roomname = $('#roomnamec').val();
         let range = $('.rangeConfig').val();
         let speed = $('.speedConfig').val();
         $('.nameOfRoom').html(roomname);
+        $('.speedCount').html(speed);
+        $('.rangeCount').html(range);
 
         if(!speed){
             speed = 1;
+            $('.speedCount').html("1");
         }
 
         if(!range){
             range = 50;
+            $('.rangeCount').html("50");
         }
         socket.emit('createroom',{roomname : roomname , range : range, speed : speed});
 
@@ -92,8 +93,15 @@ $(() => {
         } );
 
         socket.on('roomdata',(data) => {
-            console.log(data.roomdata);
+            $('.countOfRoom').html(data.userCount);
+            $('.rangeCount').html(data.range);
+            $('.speedCount').html(data.speed);
+
+
         });
+
+
+
     } );
 
     $('.joinRoom').on('click', ()=> {
@@ -106,8 +114,16 @@ $(() => {
             location.reload();
         } );
 
+
     });
 
+    socket.emit('roomx',{name :  $('#roomname').val()});
+    socket.on('roomdata',(data) => {
+        console.log(data);
+        $('.countOfRoom').html(data.userCount);
+        $('.rangeCount').html(data.range);
+        $('.speedCount').html(data.speed);
+    });
 
     $('.counter1').on('click', () => {
 
@@ -126,5 +142,9 @@ $(() => {
         }
     } );
 
+    socket.on('leaved',()=>{
+        $('.countOfRoom').html("1 \n You are alone in the room.");
+    });
 
 });
+
