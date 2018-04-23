@@ -26,10 +26,12 @@ io.on('connection', function (socket) {
             let newdata = {range : data.range , speed : data.range};
             Object.assign(socket, newdata);
             io.to(data.roomname).emit('roomdata',{roomdata : io.sockets.adapter.rooms[data.roomname], userCount : io.sockets.adapter.rooms[data.roomname].length , range : data.range , speed : data.speed});
-            console.log(socket);
+            socket.range = data.range;
+            socket.speed = data.speed;
         }
 
     });
+
 
     socket.on('joinRoom', (data)=>{
         let room = data.roomname;
@@ -42,10 +44,15 @@ io.on('connection', function (socket) {
         }else{
             socket.join(data.roomname);
             io.to(data.roomname).emit('roomdata',{roomdata : io.sockets.adapter.rooms[data.roomname], userCount : io.sockets.adapter.rooms[data.roomname].length, range : data.range , speed : data.speed});
-            console.log(socket);
         }
+
+
     });
 
+    socket.on("joined",(data)=>{
+        socket.to(data.roomname).emit('roomOkey');
+        io.to(data.roomname).emit('startCount');
+    });
 
 
     socket.on('count',(data)=>{
@@ -58,6 +65,10 @@ io.on('connection', function (socket) {
         socket.in(room).emit('loser');
     });
 
+    socket.on('allData',(data)=>{
+        socket.in(data.roomname).emit('useThisData',{speed : data.speed , range : data.range});
+
+    });
 
 
     socket.on('disconnect',()=>{

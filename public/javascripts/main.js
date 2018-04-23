@@ -1,9 +1,8 @@
 
 
 $(window).on('load',function(){
-  $('#exampleModalCenter').addClass('animated fadeOut');
   $('#exampleModalCenter').modal('show');
-  $('#exampleModalCenter').modal({backdrop: 'static', keyboard: false});  
+  $('#exampleModalCenter').modal({backdrop: 'static', keyboard: false});
   $('.configs').hide();
 
  
@@ -67,8 +66,19 @@ $(() => {
     });
 
 
+    socket.on('useThisData',(data)=>{
+        $('.speedCount').html(data.speed);
+        $('.rangeCount').html(data.range);
+    });
+
+    socket.on('startCount',()=>{
+
+    });
 
     $('#createNewRoom').on('click', () => {
+
+
+
         let roomname = $('#roomnamec').val();
         let range = $('.rangeConfig').val();
         let speed = $('.speedConfig').val();
@@ -87,6 +97,8 @@ $(() => {
         }
         socket.emit('createroom',{roomname : roomname , range : range, speed : speed});
 
+
+
         socket.on('roomExist', (data) => {
             alert(data.status);
             location.reload();
@@ -100,9 +112,17 @@ $(() => {
 
         });
 
-
+        $('#exampleModalLong').modal('show');
+        $('#exampleModalLong').modal({backdrop: 'static', keyboard: false});
 
     } );
+
+    socket.on('roomOkey',()=>{
+        let roomname = $('#roomnamec').val();
+        let range = $('.rangeConfig').val();
+        let speed = $('.speedConfig').val();
+        socket.emit('allData',{roomname : roomname , range : range, speed : speed});
+    });
 
     $('.joinRoom').on('click', ()=> {
         let roomname = $('#roomname').val();
@@ -114,12 +134,13 @@ $(() => {
             location.reload();
         } );
 
+        socket.emit('joined',{roomname});
 
     });
 
+
     socket.emit('roomx',{name :  $('#roomname').val()});
     socket.on('roomdata',(data) => {
-        console.log(data);
         $('.countOfRoom').html(data.userCount);
         $('.rangeCount').html(data.range);
         $('.speedCount').html(data.speed);
@@ -127,12 +148,15 @@ $(() => {
 
     $('.counter1').on('click', () => {
 
+        let range = parseInt($(".rangeCount").text());
+        let speed = parseInt($(".speedCount").text());
+
         let count = parseInt($('.count1').text());
         if(game && !isNaN(count)){
             let room =  $('.nameOfRoom').text();
-            count++;
+            count+=speed;
             socket.emit('count', {count});
-            if(count >= 30){
+            if(count >= range){
                 socket.emit('lose');
                 $('.count1').html("You win");
                 game = false;

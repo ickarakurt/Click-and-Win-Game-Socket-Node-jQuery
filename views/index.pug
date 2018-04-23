@@ -34,7 +34,7 @@ html(lang='en')
                             form.mt-3.form-inline(onsubmit='return false;')
                                 .form-group(style='width:58%')
                                     input#roomnamec.form-control(type='text', style='width:100%', placeholder='your room code')
-                                button#createNewRoom.btn.btn-success.ml-3.mr-2.float-right(type='button', data-dismiss='modal') Create Room
+                                button#createNewRoom.btn.btn-success.ml-3.mr-2.float-right(type='button', data-dismiss='modal', data-toggle='modal', data-target='#exampleModalLongTitle') Create Room
                                 a#config.btn.btn-dark.text-white
                                     i.fas.fa-cogs
                                 .configs
@@ -42,13 +42,21 @@ html(lang='en')
                                     .input-group
                                         .input-group-prepend
                                             .input-group-text.bg-warning.text-white Game Range (Default = 50)
-                                        input.rangeConfig.form-control(type='text', placeholder='like 30,40 any number for range')
+                                        input.rangeConfig.form-control(type='text', value="50", placeholder='like 30,40 any number for range')
                                     .input-group.mt-3
                                         .input-group-prepend
                                             .input-group-text.bg-warning.text-white Game Speed (Default = 1)
-                                        input.speedConfig.form-control(type='text', placeholder='like 2,3,4 small numbers')
+                                        input.speedConfig.form-control(type='text',value="1", placeholder='like 2,3,4 small numbers')
                             .modal-footer
                                 button#joinRoom.btn.btn-block.btn-danger.mt-3.text-white Join Room
+        #exampleModalLong.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+            .modal-dialog.modal-dialog-centered(role='document')
+                .modal-content
+                    .modal-header
+                        h5#exampleModalLongTitle.modal-title Waiting Your Enemy...
+                    .modal-body.text-center
+                        img(src='/images/loading.gif')
+
         h1.text-center.text-white(style='margin-top:140px') 🄲🄻🄸🄲🄺 🅃🄾 🅆🄸🄽
         .container
             .row
@@ -76,7 +84,6 @@ html(lang='en')
                     hr
                     span.text-white.h4(style='text-shadow: 1px 1px;border-bottom: 1px solid white;') Speed
                     h5.text-white.speedCount
-
         // Optional JavaScript
         // jQuery first, then Popper.js, then Bootstrap JS
         script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
@@ -84,4 +91,3 @@ html(lang='en')
         script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
         script(src='javascripts/main.js')
         script(defer='', src='https://use.fontawesome.com/releases/v5.0.10/js/all.js', integrity='sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+', crossorigin='anonymous')
-        script(src='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css')
