@@ -2,8 +2,9 @@
 
 $(window).on('load',function(){
   $('#exampleModalCenter').modal('show');
-  $('#exampleModalCenter').modal({backdrop: 'static', keyboard: false});
-  $('.configs').hide();
+    $('#exampleModalCenter').modal({backdrop: 'static', keyboard: false});
+
+    $('.configs').hide();
 
  
 });
@@ -72,6 +73,23 @@ $(() => {
     });
 
     socket.on('startCount',()=>{
+
+        $('#exampleModalLong').modal('hide');
+        $('.modal-backdrop').hide();
+
+
+        $('#exampleModalLong2').modal('show');
+        let number = 5;
+        setInterval(()=>{
+            number--;
+            $('.backCount').html(number);
+            if(number == 0){
+
+                $('#exampleModalLong2').modal('hide');
+            }
+        }, 1000);
+
+
 
     });
 

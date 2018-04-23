@@ -8,7 +8,9 @@ html(lang='en')
         link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
         link(rel='stylesheet', href='stylesheets/style.css')
         script(src='/socket.io/socket.io.js')
-        title Click Game
+        title Click And Win
+        link(rel='shortcut icon', type='image/png', href='images/favicon.png')
+
     body
         // modal
         #exampleModalCenter.modal.fade(data-backdrop='static', data-keyboard='false', tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true', style='margin-top:-200px')
@@ -42,13 +44,14 @@ html(lang='en')
                                     .input-group
                                         .input-group-prepend
                                             .input-group-text.bg-warning.text-white Game Range (Default = 50)
-                                        input.rangeConfig.form-control(type='text', value="50", placeholder='like 30,40 any number for range')
+                                        input.rangeConfig.form-control(type='text', value='50', placeholder='like 30,40 any number for range')
                                     .input-group.mt-3
                                         .input-group-prepend
                                             .input-group-text.bg-warning.text-white Game Speed (Default = 1)
-                                        input.speedConfig.form-control(type='text',value="1", placeholder='like 2,3,4 small numbers')
+                                        input.speedConfig.form-control(type='text', value='1', placeholder='like 2,3,4 small numbers')
                             .modal-footer
                                 button#joinRoom.btn.btn-block.btn-danger.mt-3.text-white Join Room
+        // modal
         #exampleModalLong.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
             .modal-dialog.modal-dialog-centered(role='document')
                 .modal-content
@@ -56,7 +59,15 @@ html(lang='en')
                         h5#exampleModalLongTitle.modal-title Waiting Your Enemy...
                     .modal-body.text-center
                         img(src='/images/loading.gif')
-
+        // modal
+        #exampleModalLong2.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+            .modal-dialog.modal-dialog-centered(role='document')
+                .modal-content
+                    .modal-header
+                        h5#exampleModalLongTitle.modal-title
+                            .backCount 5
+                    .modal-body.text-center
+                        img(src='/images/loading.gif')
         h1.text-center.text-white(style='margin-top:140px') 🄲🄻🄸🄲🄺 🅃🄾 🅆🄸🄽
         .container
             .row
