@@ -52,7 +52,7 @@ html(lang='en')
                             .modal-footer
                                 button#joinRoom.btn.btn-block.btn-danger.mt-3.text-white Join Room
         // modal
-        #exampleModalLong.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+        #exampleModalLong.modal.fade(data-backdrop='static', data-keyboard='false',tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
             .modal-dialog.modal-dialog-centered(role='document')
                 .modal-content
                     .modal-header
@@ -60,7 +60,7 @@ html(lang='en')
                     .modal-body.text-center
                         img(src='/images/loading.gif')
         // modal
-        #exampleModalLong2.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+        #exampleModalLong2.modal.fade(data-backdrop='static', data-keyboard='false',tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
             .modal-dialog.modal-dialog-centered(role='document')
                 .modal-content
                     .modal-header

@@ -40,7 +40,7 @@ $(() => {
 
 
 
-    const socket = io.connect('localhost:3000', {
+    const socket = io.connect('localhost:80', {
         reconnectionAttempts: 4,
         reconnectionDelay: 3000,
         // reconnection: false
