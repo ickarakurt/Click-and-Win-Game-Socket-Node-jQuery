@@ -1,4 +1,7 @@
 # Click and Win
+
+### demo -> http://click-and-win.herokuapp.com/
+
 #### About Click and Game
 Click and Win is a kind of game. If user want to win the game, he/she have to click faster than enemy.
 #### How to Play ?
@@ -40,7 +43,6 @@ npm install pm2 -g
 cd /var/www
 pm2 start app.js
 ```
-
 
 
 
