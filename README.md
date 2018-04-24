@@ -43,7 +43,8 @@ npm install pm2 -g
 cd /var/www
 pm2 start app.js
 ```
-
+### issues to be solved soon
+* If room name is empty ,socket can't work.
 
 
 
