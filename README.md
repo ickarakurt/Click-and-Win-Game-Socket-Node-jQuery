@@ -45,7 +45,7 @@ pm2 start app.js
 ```
 ### issues to be solved soon
 * If room name is empty ,socket can't work.
-
+* click event on waiting your enemy , adding display none on title
 
 
 
