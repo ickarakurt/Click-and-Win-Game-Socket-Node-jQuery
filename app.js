@@ -4,7 +4,7 @@ const app = express();
 const server = require('http').Server(app);
 
 const io = socketio(server);
-server.listen(80);
+server.listen(process.env.PORT || 5000);
 
 app.set('view engine', 'pug');
 app.use(express.static('public'));

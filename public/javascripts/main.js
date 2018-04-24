@@ -40,7 +40,7 @@ $(() => {
 
 
 
-    const socket = io.connect('localhost:80', {
+    const socket = io.connect('http://click-and-win.herokuapp.com:5000', {
         reconnectionAttempts: 4,
         reconnectionDelay: 3000,
         // reconnection: false
